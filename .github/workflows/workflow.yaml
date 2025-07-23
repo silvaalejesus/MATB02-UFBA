@@ -1,0 +1,22 @@
+name: Continuos Integration
+
+on: pull_request
+
+jobs:
+  continuos-integration:
+    runs-on: ubuntu-latest
+    steps:
+      # faz o gitclone do repositorio e faz o checkout pra brach principal
+      - uses: actions/checkout@v3
+      # instalar o node
+      - name: Using Node.js
+        uses: actions/setup-node@v4
+        # with é a forma de passar argumentos para dentro da action
+        with:
+          node-version: '22.x'
+      - name: run install, build and test
+      # os comando que serao executados
+      # nao coloquei o yarn build aqui pq esse repositorio so tem testes
+        run: |
+          yarn
+          yarn test
